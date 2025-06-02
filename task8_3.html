@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: black;
+            height: 100vh;
+        }
+        @keyframes coloring {
+            0%{border-color: red;}
+            20%{border-color: pink;}
+            40%{border-color: blue;}
+            60%{border-color: aqua;}
+            80%{border-color: springgreen;}
+            100%{border-color: blueviolet;}
+        }
+        .box{
+            height: 80%;
+            width:80%;
+            background-color: whitesmoke;
+            border-radius: 20%;
+            color: black;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-size: 30px;
+            border: 20px solid red ;
+            animation: coloring 5s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body> 
+    <div class="box"></div>
+    <script >
+        let number= Number(window.prompt("Enter your number"))
+        const div_contain=document.getElementsByClassName("box")[0]
+        if(number>10 || number<1){
+                div_contain.innerHTML="<b>Number should be small for scalable purpose.</b>";
+
+        }
+        else{
+                div_contain.innerHTML+="Looping started"
+                for(let i=0;i<number;i++){
+                div_contain.innerHTML+="<b> Hello World  </b>";
+        }
+        div_contain.innerHTML+="<b>Looping completed</b>"
+        }
+    </script>
+</body>
+</html>
