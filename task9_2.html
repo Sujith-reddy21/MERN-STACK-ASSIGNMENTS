@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: black;
+            height: 100vh;
+        }
+        @keyframes coloring {
+            0%{border-color: red;}
+            20%{border-color: pink;}
+            40%{border-color: blue;}
+            60%{border-color: aqua;}
+            80%{border-color: springgreen;}
+            100%{border-color: blueviolet;}
+        }
+        .box{
+            height: 80%;
+            width:80%;
+            background-color: whitesmoke;
+            border-radius: 20%;
+            color: black;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            
+            border: 20px solid red ;
+            animation: coloring 5s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body> 
+    <div class="box"></div>
+    <script >
+        let name = new String("Sujith reddy");
+        let div_1=document.getElementsByClassName("box")[0];
+        div_1.innerHTML+="<h1>String operations</h1>"
+        div_1.innerHTML+="My name is "+name+"<br>";
+        div_1.innerHTML+="After getting second character : "+name.charAt(1)+"<br>";
+        div_1.innerHTML+="After getting concatenate : "+"Yenugu ".concat(name)+"<br>";
+        div_1.innerHTML+="After finding index of u : "+name.indexOf("u")+"<br>";
+        div_1.innerHTML+="After finding last index of d : "+name.lastIndexOf("d")+"<br>";
+        div_1.innerHTML+="After trimming : "+name.trim();
+        
+    </script>
+</body>
+</html>

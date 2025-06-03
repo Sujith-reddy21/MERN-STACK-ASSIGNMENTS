@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: black;
+            height: 100vh;
+        }
+        @keyframes coloring {
+            0%{border-color: red;}
+            20%{border-color: pink;}
+            40%{border-color: blue;}
+            60%{border-color: aqua;}
+            80%{border-color: springgreen;}
+            100%{border-color: blueviolet;}
+        }
+        .box{
+            height: 80%;
+            width:80%;
+            background-color: whitesmoke;
+            border-radius: 20%;
+            color: black;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            
+            border: 20px solid red ;
+            animation: coloring 5s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body> 
+    <div class="box"></div>
+    <script >
+        let value=document.getElementsByClassName("box")[0];
+        let array=["num1","num2","num3"]
+        value.innerHTML+="<h1>Array operations</h1>";
+        value.innerHTML+="values in the array : "+array+"<br><br>";
+        array.push("num4")
+        value.innerHTML+="values in the array after pushing :"+array+"<br><br>";
+        array.pop()
+        value.innerHTML+="values in the array after popping :"+array+"<br><br>";
+        array.reverse();
+        value.innerHTML+="values in the array after reversing :"+array+"<br><br>";
+        array.reverse();
+        let yes=array.includes("num3")
+        value.innerHTML+="checking for include of the num3: "+yes+"<br><br>";
+        let index=array.indexOf("num3");
+        value.innerHTML+=" index checking for num3 : "+index+"<br><br>";
+        let len=array.length
+        value.innerHTML+="Length of values in the array : "+len;
+
+
+
+    </script>
+</body>
+</html>
