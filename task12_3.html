@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <style>
+                body{
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        height: 100vh;
+                
+                }
+        </style>
+</head>
+<body>
+        
+                <label for="number1">1st Number</label>
+                <input type="text" id="value1"><br><br>
+                <label for="number2" >2nd Number</label>
+                <input type="text" id="value2">
+                <button type="submit" onclick=" return multiply()" >multiply</button>
+                <button type="submit" onclick=" return divide()" >divide</button>
+                <p>The result is : </p>
+                <p id="value_got"></p>
+                <script>
+                        function multiply(){
+                                let val1=document.getElementById("value1").value;
+                                let val2=document.getElementById("value2").value;
+                                let val3=Number(val1)*Number(val2)
+                                document.getElementById("value_got").innerText=val3;
+                                return val3;
+                        }
+                        function divide(){
+                                
+                                let val1=document.getElementById("value1").value;
+                                let val2=document.getElementById("value2").value;
+                                if (val2===0){
+                                        return alert("Number not divisible by zero")
+                                }
+                                let val3=Number(val1)/Number(val2)
+                                document.getElementById("value_got").innerText=val3;
+                                return val3;
+                        }
+                </script>
+
+
+
+        
+</body>
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Generator</title>
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: black;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background-color: aqua;
+            padding: 10%;
+            border-radius: 50px;
+        }
+        h1 {
+            position: relative;
+            bottom: 70px;
+            color: white;
+            background-color: black;
+            padding: 20px;
+            border-radius: 20px;
+            text-align: center;
+        }
+        .input1 {
+            position: relative;
+            bottom: 50px;
+            text-align: center;
+        }
+        .returnerr {
+            width: 60%;
+            height: 30px;
+            background-color: white;
+            border-radius: 50px;
+            margin: auto;
+            text-align: center;
+            padding: 5px;
+            bottom: 10px;
+        }
+        #returner {
+            font-weight: bold;
+            position: relative;
+            bottom: 10px;
+        }
+        #copy {
+            position: relative;
+           
+            background-color: black;
+            color: white;
+            padding: 5px;
+            transition: 0.3s;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+        }
+        #copy:active {
+            box-shadow: 0px 0px 10px black;
+        }
+        .input2 {
+            text-align: center;
+            margin-top: 20px;
+        }
+        label {
+            font-weight: bolder;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>PASSWORD GENERATOR</h1>
+        <div class="input1">
+            <div class="returnerr">
+                <p id="returner"></p>
+            </div>
+            <button type="submit" id="copy">COPY</button>
+        </div>
+        <div class="input2">
+            <input type="range" id="lengthRange" min="6" max="20" value="12">
+            <label>Length: <b id="lengthValue">12</b></label>
+            <br><br>
+            <input type="checkbox" id="includeChars">
+            <label>Characters</label>
+            <input type="checkbox" id="includeNumbers">
+            <label>Numbers</label>
+        </div>
+    </div>
+
+    <script>
+        function generatePassword() {
+            const length = document.getElementById("lengthRange").value;
+            const includeChars = document.getElementById("includeChars").checked;
+            const includeNumbers = document.getElementById("includeNumbers").checked;
+
+            let characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            let numbers = "0123456789";
+            let specialChars = "!@#$%^&*()_+[]{}|;:,.<>?";
+
+            let allowedChars = characters;
+            if (includeNumbers) allowedChars += numbers;
+            if (includeChars) allowedChars += specialChars;
+
+            let password = "";
+            for (let i = 0; i < length; i++) {
+                password += allowedChars[Math.floor(Math.random() * allowedChars.length)];
+            }
+
+            document.getElementById("returner").innerText = password;
+            document.getElementById("lengthValue").innerText = length;
+        }
+
+        document.getElementById("lengthRange").addEventListener("input", generatePassword);
+        document.getElementById("includeChars").addEventListener("change", generatePassword);
+        document.getElementById("includeNumbers").addEventListener("change", generatePassword);
+
+        document.getElementById("copy").addEventListener("click", function () {
+            const password = document.getElementById("returner").innerText;
+            if (password) {
+                navigator.clipboard.writeText(password);
+                alert("Password copied to clipboard!");
+            }
+        });
+
+  
+        generatePassword();
+    </script>
+</body>
+</html>

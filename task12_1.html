@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Number Calculator</title>
+        <style>
+                * {
+                        padding: 0;
+                        margin: 0;
+                        box-sizing: border-box;
+                }
+                div {
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        align-items: center;
+                        height: 100vh;
+                }
+        </style>
+</head>
+<body>
+    <div class="box">
+        <h1>Number CALCULATor</h1>
+        <input type="text" id="number_val">  
+        <button type="submit" onclick="number_rev()">TRY ME</button>
+        <p id="result"></p>
+    </div>
+
+    <script>
+        function number_rev() {
+            let number = document.getElementById("number_val").value;
+            let reversedNumber = number.split('').reverse().join('');  
+            document.getElementById("result").innerText = "Reversed Number: " + reversedNumber;
+        }
+    </script>
+</body>
+</html>
