@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<script type="text/javascript">
+     function validateField(field, warningId, xIconId, borderId, paddingId){
+        if(field.value.trim().length===0){
+            document.getElementById(warningId).style.display="block";
+            document.getElementById(xIconId).style.display="block";
+            document.getElementById(borderId).style.borderColor="red";
+            document.getElementById(paddingId).style.padding="0px 0px";
+            return false;
+        }
+        return true;
+    }
+    function submit(){
+        let Fname=document.getElementById("FirstName");
+        let Lname=document.getElementById("LastName");
+        let Email=document.getElementById("EMail");
+        let Phone=document.getElementById("PhoneN");
+        let Address=document.getElementById("Address");
+        let City=document.getElementById("City");
+        let State=document.getElementById("State");
+        let projectD=document.getElementById("ProjectD");
+        let yes=document.getElementById("Yes");
+        let no=document.getElementById("No");
+
+        let valid=true;
+        
+        if(!validateField(Fname, "FW", "FWX", "Fid1", "Fid")) valid=false;
+        if(!validateField(Lname, "LW", "LWX", "Lid1", "Lid")) valid=false;
+        if(!validateField(Email, "EW", "EWX", "Eid1", "Eid")) valid=false;
+        if(!validateField(Phone, "PW", "PWX", "Pid1", "Pid")) valid=false;
+        if(!validateField(Address, "AW", "AWX", "Aid1", "Aid")) valid=false;
+        if(!validateField(City, "CW", "CWX", "Cid1", "Cid")) valid=false;
+        if(!validateField(State, "SW", "SWX", "Sid1", "Sid")) valid=false;
+        if(!validateField(projectD, "PRW", "PRWX", "PRid1", "PRid")) valid=false;
+
+        let HW=document.getElementById("HW");
+        if(!yes.checked && !no.checked){
+            HW.style.display="block";
+            valid=false;
+        }
+
+        if(valid){
+            alert("Form Submitted Successfully");
+        }
+
+    }
+   
+
+
+</script>
+<style>
+    .MainDiv{
+        background-color:lightgray;
+        min-height:170vh;
+        width:100vw;
+        font-family:"Roboto";
+        text-align:center;
+        display:flex;
+        flex-direction: column;
+    }
+    .HorizontalDiv{
+        display: flex;
+        justify-content:center;
+        flex-direction:row;
+        gap:100px;
+        margin-left:auto;
+        margin-right:auto;
+        padding:10px 0px;
+    }
+    .DivBox{
+        display: flex;
+        justify-content:center;
+        flex-direction:row;
+        gap:10px;
+        border:1px solid black;
+    }
+    .warning{
+        color:red;
+        font-size:17px;
+        display:none;
+        text-align:center;
+        margin-top:5px;
+    }
+    .sideheading{
+        font-size:20px;
+        font-weight:bold;
+        color:black;
+        min-width: 150px;
+        text-align: right;
+    }
+    .XIcon{
+        color: red;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        padding:0 15px;
+        justify-content: center;
+        display:none;
+    }
+    .XIcon svg{
+        transform: scale(1.4);
+    }
+    .Icon{
+        display: flex;
+        align-items: center;
+        padding-left:8px;
+        color:black;
+    }
+    .InputDiv{
+        display: flex;
+        justify-content:center;
+        flex-direction:row;
+        gap:10px;
+        background-color: white;
+        align-items:center;
+    }
+    .box{
+        border:white;
+        padding:0px 20px;
+        min-width:10vw;
+        font-size:20px;
+        height: 100%;
+    }
+    .DivHostingHorizontal{
+        display:flex;
+        gap:10px;
+        flex-direction: row;
+        align-items: center;
+    }
+    .p{
+        font-weight:bold;
+        margin:0px;
+    }
+    .btn{
+        background-color: darkgoldenrod;
+        color:white;
+        font-size:20px;
+        height:6vh;
+        width:10vw;
+        font-weight:bold;
+        margin-top:20px;
+    }
+     textarea.box {
+        min-height: 100px;
+        resize: vertical;
+    }
+    .btnDiv{
+        display:flex;
+        justify-content:center;
+        margin-top:6px;
+    }
+</style>
+
+<body>
+
+    <div class="MainDiv">
+        <h1>Form Validation</h1>
+        <div class="HorizontalDiv" id="Fid">
+            <p class="sideheading">First Name</p>
+            <div class="DivBox" id="Fid1">
+                <div class="Icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
+                        <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10s-3.516.68-4.168 1.332c-.678.678-.83 1.418-.832 1.664z"/>
+                    </svg>
+                </div>
+                <div class="InputDiv">
+                    <input type="text" placeholder="First Name" id="FirstName" class="box">
+                    <div class="XIcon" id="FWX">
+                        <svg xmlns="http://www.w3.org/2000/svg"  width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                            <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <p class="warning" id="FW">Please supply your first name</p>
+
+        <div class="HorizontalDiv" id="Lid">
+            <p class="sideheading">Last Name</p>
+            <div class="DivBox" id="Lid1">
+                <div class="Icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
+                        <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10s-3.516.68-4.168 1.332c-.678.678-.83 1.418-.832 1.664z"/>
+                    </svg>
+                </div>
+                <div class="InputDiv">
+                    <input type="text" placeholder="Last Name" id="LastName" class="box">
+                    <div class="XIcon" id="LWX">
+                        <svg xmlns="http://www.w3.org/2000/svg"  width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                            <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <p class="warning" id="LW">Please supply your last name</p>
+
+        <div class="HorizontalDiv" id="Eid">
+            <p class="sideheading">E-Mail</p>
+            <div class="DivBox" id="Eid1">
+                <div class="Icon">
+                   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-envelope-fill" viewBox="0 0 16 16">
+                        <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414zM0 4.697v7.104l5.803-3.558zM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586zm3.436-.586L16 11.801V4.697z"/>
+                    </svg>
+                </div>
+                <div class="InputDiv">
+                    <input type="text" placeholder="E-Mail Address" id="EMail" class="box">
+                    <div class="XIcon" id="EWX">
+                        <svg xmlns="http://www.w3.org/2000/svg"  width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                            <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <p class="warning" id="EW">Please supply your EMail Address</p>
+
+        <div class="HorizontalDiv" id="Pid">
+            <p class="sideheading">Phone #</p>
+            <div class="DivBox" id="Pid1">
+                <div class="Icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-telephone-fill" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.68.68 0 0 0 .178.643l2.457 2.457a.68.68 0 0 0 .644.178l2.189-.547a1.75 1.75 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.6 18.6 0 0 1-7.01-4.42 18.6 18.6 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877z"/>
+                    </svg>
+                </div>
+                <div class="InputDiv">
+                    <input type="text" placeholder="(845)555-1212" id="PhoneN" class="box">
+                    <div class="XIcon" id="PWX">
+                        <svg xmlns="http://www.w3.org/2000/svg"  width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                            <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <p class="warning" id="PW">Please supply your Phone Number</p>
+
+        <div class="HorizontalDiv" id="Aid">
+            <p class="sideheading">Address</p>
+            <div class="DivBox" id="Aid1">
+                <div class="Icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-house-door-fill" viewBox="0 0 16 16">
+                        <path d="M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5"/>
+                    </svg>
+                </div>
+                <div class="InputDiv">
+                    <input type="text" placeholder="Address" id="Address" class="box">
+                    <div class="XIcon" id="AWX">
+                        <svg xmlns="http://www.w3.org/2000/svg"  width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                            <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <p class="warning" id="AW">Please supply your street address</p>
+
+        <div class="HorizontalDiv" id="Cid">
+            <p class="sideheading">City</p>
+            <div class="DivBox" id="Cid1">
+                <div class="Icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-house-door-fill" viewBox="0 0 16 16">
+                        <path d="M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5"/>
+                    </svg>
+                </div>
+                <div class="InputDiv">
+                    <input type="text" placeholder="City" id="City" class="box">
+                    <div class="XIcon" id="CWX">
+                        <svg xmlns="http://www.w3.org/2000/svg"  width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                            <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <p class="warning" id="CW">Please supply your city</p>
+
+        <div class="HorizontalDiv" id="Sid">
+            <p class="sideheading">State</p>
+            <div class="DivBox" id="Sid1">
+                <div class="Icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-card-list" viewBox="0 0 16 16">
+                        <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2z"/>
+                        <path d="M5 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 5 8m0-2.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5m0 5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5m-1-5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0M4 8a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0m0 2.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0"/>
+                    </svg>
+                </div>
+                <div class="InputDiv" id="Sid">
+                    <input type="text" placeholder="Please enter your state" id="State" class="box">
+                    <div class="XIcon" id="SWX">
+                        <svg xmlns="http://www.w3.org/2000/svg"  width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                            <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <p class="warning" id="SW">Please supply your state</p>
+
+        <div class="HorizontalDiv" style="justify-content:flex-start;margin-left:400px;margin-bottom:10px;">
+            <p class="sideheading">Do you have hosting?</p>
+            <div class="DivHostingVertical">
+                <div class="DivHostingHorizontal" style="padding:10px;">
+                    <input type="radio" id="Yes" name="hosting">
+                    <p class="p">YES</p>
+                </div>
+
+                <div class="DivHostingHorizontal" style="padding:10px;">
+                    <input type="radio" id="No" name="hosting">
+                    <p class="p">NO</p>
+                </div>
+            </div>
+            <div style="display:flex;flex-direction:column;justify-content: center;">
+                <p class="warning" id="HW" style="font-size:19px;">Please select one option</p>
+            </div>
+        </div>
+
+        <div class="HorizontalDiv" id="PRid">
+            <p class="sideheading">Project Description</p>
+            <div class="DivBox"  id="PRid1">
+                <div class="Icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">
+                        <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.5.5 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11z"/>
+                    </svg>  
+                </div>
+                <div class="InputDiv">
+                    <textarea placeholder="Project Description" id="ProjectD" class="box"></textarea>
+
+                    <div class="XIcon" id="PRWX">
+                        <svg xmlns="http://www.w3.org/2000/svg"  width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                            <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <p class="warning" id="PRW">Please supply your project description</p>
+        <div class="btnDiv">
+            <button class="btn" onclick="submit()">Send 
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-send" viewBox="0 0 16 16">
+                    <path d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576zm6.787-8.201L1.591 6.602l4.339 2.76z"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+</body>
+</html>
