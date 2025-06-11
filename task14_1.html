@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <style>
+                *{
+                        padding: 0;
+                        margin: 0;
+                        box-sizing: border-box;
+                        font-family: Verdana, Geneva, Tahoma, sans-serif;
+
+                }
+                body{
+                        height: 100vh;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        background:radial-gradient(yellow,orange,red);
+                }
+                @keyframes animator {
+                        0%{background:linear-gradient(0deg,yellow,orange,red);}
+                        25%{background:linear-gradient(90deg,yellow,orange,red);}
+                        50%{background:linear-gradient(180deg,yellow,orange,red);}
+                        75%{background:linear-gradient(270deg,yellow,orange,red);}
+                        100%{background:linear-gradient(360deg,yellow,orange,red);}
+                }
+                div{
+                        text-align: center;
+                        border: 1px solid orangered;
+                        padding: 10%;
+                        background:linear-gradient(135deg,yellow,orange,red);
+                        animation: animator 0.3s ease-in-out infinite;
+                             
+                }
+                
+                h1{
+                        padding: 10%;
+                        position: relative;
+                        bottom: 40px;
+                }
+                h2{
+                        position: relative;
+                        bottom: 40px;
+                }
+                button{
+                        background: transparent;
+                        backdrop-filter: blur(100px);
+                        color: black;
+                        padding: 10px;
+                }
+        </style>
+</head>
+<body>
+        <div class="container">
+                <h1>TIMER</h1>
+                <h2 class="timer-showing">23:90</h2>
+                <button onclick="starter()" type="submit">START</button>
+                <button onclick="stopper()" type="submit">STOP</button>
+                <button onclick="resetter()" type="submit">RESET</button>
+        </div>
+        <script>
+    let timeLeft = 1500; 
+    let timerInterval;
+
+    function updateTimerDisplay() {
+        let minutes = Math.floor(timeLeft / 60);
+        let seconds = timeLeft % 60;
+        document.querySelector(".timer-showing").textContent = 
+            `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+    }
+
+    function starter() {
+        if (!timerInterval) {
+            timerInterval = setInterval(() => {
+                if (timeLeft > 0) {
+                    timeLeft--;
+                    updateTimerDisplay();
+                } else {
+                    clearInterval(timerInterval);
+                    timerInterval = null;
+                }
+            }, 1000);
+        }
+    }
+
+    function stopper() {
+        clearInterval(timerInterval);
+        timerInterval = null;
+    }
+
+    function resetter() {
+        stopper();
+        timeLeft = 1500; 
+        updateTimerDisplay();
+    }
+
+    updateTimerDisplay(); 
+</script>
+</body>
+</html>
