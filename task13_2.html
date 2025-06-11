@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Local Storage Example</title>
+        <style>
+                *{
+                        padding: 0;
+                        margin: 0;
+                        box-sizing: border-box;
+                }
+                body{
+                        height: 100vh;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        background: linear-gradient(to bottom right, skyblue, blue, rgb(9, 16, 76));
+                }
+                div{
+                        border: 5px solid white;
+                        padding: 10%;
+                }
+                input{
+                        padding: 5%;
+                        outline: none;
+                        border: none;
+                        background: transparent;
+                        backdrop-filter: blur(10px);
+                        border-bottom: 1px solid white;
+                        color: white;
+                        width: 100%;
+                }
+                button{
+                        background-color: white;
+                        color: black;
+                        padding: 4%;
+                        cursor: pointer;
+                }
+        </style>
+</head>
+<body>
+        <div class="container">
+                <input type="text" id="name" placeholder="Enter your name"><br><br>
+                <input type="text" id="age" placeholder="Enter your age"><br><br>
+                <button onclick="saveData()" class="save">Save</button>
+                <button onclick="loadData()" class="load">Load</button>
+        </div>
+
+        <script>
+                function saveData() {
+                        const name = document.getElementById("name").value;
+                        const age = document.getElementById("age").value;
+
+                        localStorage.setItem("name", name);
+                        localStorage.setItem("age", age);
+
+                        alert("Data saved!");
+                }
+
+                function loadData() {
+                        const name = localStorage.getItem("name");
+                        const age = localStorage.getItem("age");
+
+                        if (name && age) {
+                                document.getElementById("name").value = name;
+                                document.getElementById("age").value = age;
+                                alert("Data loaded!");
+                        } else {
+                                alert("No data found.");
+                        }
+                }
+        </script>
+</body>
+</html>
