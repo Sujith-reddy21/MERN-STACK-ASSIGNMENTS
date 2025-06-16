@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<style>
+    .Background{
+        background-color:rgb(49, 48, 48);
+        min-height:100vh;
+        width:100vw;
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+        padding:20px;
+    }
+    .h1{
+        font-family: ;
+        color:green;
+        font-size:40px;
+        margin-bottom:30px;
+    }
+
+    .HorizontalDiv{
+        display:flex;
+        flex-direction:row;
+        align-items:center;
+        justify-content:center;
+        gap:30px;
+    }
+
+    .btn{
+        background-color:rgb(14, 90, 14);
+        height:6vh;
+        border:2px solid white;
+        color:white;
+        border-radius:10px;
+        font-size: 17px;
+        padding:0px 20px;
+        cursor:pointer;
+        margin-bottom:34px;
+    }
+    .btn:hover{
+        border:2px solid black;
+    }
+
+    .SearchDiv{
+        display:flex;
+        flex-direction:row;
+        justify-content:center;
+        align-items:center;
+        gap:10px;
+        border-radius:30px;
+        background-color:white;
+        padding:5px 15px;
+    }
+    #InputSearch{
+        border:none;
+        outline:none;
+        height:4vh;
+        font-size:16px;;
+    }
+    .card{
+        background-color:"#222";
+        color:white;
+        padding:10px;
+        border-top-left-radius:20px;
+        border-bottom-right-radius:20px;
+        box-shadow:-5px -5px 8px white,5px 5px 8px black;
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+        height:auto;
+        position:relative;
+        width:16vw;
+        margin:24px;
+    }
+
+    
+
+</style>
+
+<body>
+    <div class="Background">
+
+        <h1 class="h1">MOVIE LIST</h1>
+        <div class="HorizontalDiv">
+            <button class="btn" onclick="fecthMovies('marvel')">Marvel Movie</button>
+            <button class="btn" onclick="fecthMovies('funny')">Funny Movie</button>
+            <button class="btn" onclick="fecthMovies('animation')">Animation Movie</button>
+            <button class="btn" onclick="fecthMovies('web series')">Web Series Movie</button>
+        </div>
+
+        <div class="SearchDiv">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="black" class="bi bi-search" viewBox="0 0 16 16">
+                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+            </svg>
+            <input id="InputSearch" type="text"  onkeydown="handleKey(event)" placeholder="Search movies..." >
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="blue" class="bi bi-mic" viewBox="0 0 16 16">
+                <path d="M3.5 6.5A.5.5 0 0 1 4 7v1a4 4 0 0 0 8 0V7a.5.5 0 0 1 1 0v1a5 5 0 0 1-4.5 4.975V15h3a.5.5 0 0 1 0 1h-7a.5.5 0 0 1 0-1h3v-2.025A5 5 0 0 1 3 8V7a.5.5 0 0 1 .5-.5"/>
+                <path d="M10 8a2 2 0 1 1-4 0V3a2 2 0 1 1 4 0zM8 0a3 3 0 0 0-3 3v5a3 3 0 0 0 6 0V3a3 3 0 0 0-3-3"/>
+            </svg>
+        </div>
+
+        <div class="MovieGrid" id="MovieGrid">
+
+        </div>
+        <div id="loader" style="color: white; display: none; font-size: 30px; margin: 20px;">Loading...</div>
+
+
+    </div>
+
+</body>
+
+<script>
+    const movieGrid = document.getElementById("MovieGrid");
+    let loader = document.getElementById("loader");
+
+    function fecthMovies(searchTerm) {
+        const apiKey = "68d9448f";
+          loader.style.display = "block";         
+           movieGrid.innerHTML = "";   
+
+        fetch(https://www.omdbapi.com/?s=${searchTerm}&apikey=${apiKey})
+            .then(res => res.text())
+            .then(text => {
+                loader.style.display = "none";
+
+                let data=JSON.parse(text);
+                movieGrid.innerHTML = "";
+                if (data.Search) {
+                    data.Search.forEach(movie => createMovieCard(movie));
+                } else {
+                    movieGrid.innerHTML = "<p style='color:white;font-size: 30px;'>No movies found</p>";
+                }
+            });
+    }
+
+    function handleKey(event) {
+        if (event.key === "Enter") {
+            const term = document.getElementById("InputSearch").value;
+            if (term.trim() !== "") {
+                fecthMovies(term);
+            }
+        }
+    }
+    
+    function createMovieCard(movie) {
+
+    let card = document.createElement("div");
+    card.classList.add("card");
+
+    let img = document.createElement("img");
+    img.src = movie.Poster !== "N/A" ? movie.Poster : "https://via.placeholder.com/150x200?text=No+Image";
+    img.alt = movie.Title;
+    img.style.width = "100%";
+    img.style.height = "250px";
+    img.style.borderRadius = "10px";
+    img.style.marginBottom = "10px";
+
+    let title = document.createElement("h1");
+    title.textContent = movie.Title;
+    title.style.fontSize = "18px";
+    title.style.textAlign = "center";
+    title.style.margin = "5px 0";
+    title.style.fontWeight = "bold";
+    title.style.color = "white";
+
+
+    let row = document.createElement("div");
+    row.style.display = "flex";
+    row.style.flexDirection = "row";
+    row.style.alignItems = "center";
+    row.style.justifyContent="center";
+    row.style.gap="40px";
+    row.style.width = "100%";
+    row.style.padding = "10px";
+
+    let heart = document.createElement("span");
+    heart.textContent = "🤍";
+    heart.style.fontSize = "22px";
+    heart.style.cursor = "pointer";
+
+    heart.onclick = () => {
+        heart.textContent = heart.textContent === "❤" ? "🤍" : "❤";
+    };
+
+    let infoCol = document.createElement("div");
+    infoCol.style.display = "flex";
+    infoCol.style.flexDirection = "column";
+    infoCol.style.alignItems = "flex-end";  
+    infoCol.style.color = "white";
+
+    let type = document.createElement("p");
+    type.textContent = "Type: " + movie.Type;
+    type.style.margin = "2px 0";
+
+    let year = document.createElement("p");
+    year.textContent = "Year: " + movie.Year;
+    year.style.margin = "2px 0";
+
+    infoCol.appendChild(type);
+    infoCol.appendChild(year);
+
+    
+    row.appendChild(infoCol);   
+    row.appendChild(heart); 
+
+    card.appendChild(img);
+    card.appendChild(title);
+    card.appendChild(row);
+
+    movieGrid.appendChild(card);
+    }
+
+
+
+    movieGrid.style.display = "grid";
+    movieGrid.style.gridTemplateColumns = "repeat(4, 1fr)";
+    movieGrid.style.gap = "25px";
+    movieGrid.style.marginTop = "40px";
+</script>
+
+</html>
