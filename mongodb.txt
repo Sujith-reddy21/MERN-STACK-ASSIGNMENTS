@@ -1,0 +1,155 @@
+use name
+db.createCollection("employees")
+// Insert a single document into a collection:
+db.employees.insertOne({
+    name:"ravi",
+    age:22,
+    city:"Nellore"
+})
+
+// Insert multiple documents at once:
+db.employees.insertMany([
+    {name:"deepak",
+     age:23,
+     city:"Nellore"
+    },
+    {
+        name:"Avinash",
+        age:24,
+        city:"Nellore"
+    }
+])
+ // Find all documents in a collection:
+db.employees.find()
+
+// Find documents where a field equals a specific value
+
+db.employees.find({age:23})
+
+// Find documents where a numeric field is greater than a value
+db.employees.find({age:{$gt:22}})
+
+// Find documents where a numeric field is less than a value
+
+db.employees.find({age:{$lt:25}})
+
+// Find documents with multiple conditions (AND):
+db.employees.find({ $and: [ { age: { $gt: 20 } }, { city: "Nellore" } ] })
+
+
+
+
+//OUTPUT:
+
+ mycompiler_mongodb> switched to db name
+name> { ok: 1 }
+name> 
+name> ... ... ... ... {
+  acknowledged: true,
+  insertedId: ObjectId('6853b2878362f0d7046b128c')
+}
+name> 
+name> 
+name> ... ... ... ... ... ... ... ... ... ... {
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('6853b2878362f0d7046b128d'),
+    '1': ObjectId('6853b2878362f0d7046b128e')
+  }
+}
+name> 
+name> [
+  {
+    _id: ObjectId('6853b2878362f0d7046b128c'),
+    name: 'ravi',
+    age: 22,
+    city: 'Nellore'
+  },
+  {
+    _id: ObjectId('6853b2878362f0d7046b128d'),
+    name: 'deepak',
+    age: 23,
+    city: 'Nellore'
+  },
+  {
+    _id: ObjectId('6853b2878362f0d7046b128e'),
+    name: 'Avinash',
+    age: 24,
+    city: 'Nellore'
+  }
+]
+name> 
+name> 
+name> 
+name> [
+  {
+    _id: ObjectId('6853b2878362f0d7046b128d'),
+    name: 'deepak',
+    age: 23,
+    city: 'Nellore'
+  }
+]
+name> 
+name> 
+name> [
+  {
+    _id: ObjectId('6853b2878362f0d7046b128d'),
+    name: 'deepak',
+    age: 23,
+    city: 'Nellore'
+  },
+  {
+    _id: ObjectId('6853b2878362f0d7046b128e'),
+    name: 'Avinash',
+    age: 24,
+    city: 'Nellore'
+  }
+]
+name> 
+name> 
+name> 
+name> [
+  {
+    _id: ObjectId('6853b2878362f0d7046b128c'),
+    name: 'ravi',
+    age: 22,
+    city: 'Nellore'
+  },
+  {
+    _id: ObjectId('6853b2878362f0d7046b128d'),
+    name: 'deepak',
+    age: 23,
+    city: 'Nellore'
+  },
+  {
+    _id: ObjectId('6853b2878362f0d7046b128e'),
+    name: 'Avinash',
+    age: 24,
+    city: 'Nellore'
+  }
+]
+name> 
+name> 
+name> [
+  {
+    _id: ObjectId('6853b2878362f0d7046b128c'),
+    name: 'ravi',
+    age: 22,
+    city: 'Nellore'
+  },
+  {
+    _id: ObjectId('6853b2878362f0d7046b128d'),
+    name: 'deepak',
+    age: 23,
+    city: 'Nellore'
+  },
+  {
+    _id: ObjectId('6853b2878362f0d7046b128e'),
+    name: 'Avinash',
+    age: 24,
+    city: 'Nellore'
+  }
+]
+name> 
+
+[Execution complete with exit code 0]
